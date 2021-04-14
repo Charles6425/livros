@@ -3,7 +3,7 @@ package com.api.livros.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity(name = "livro")
 public class ModelLivro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class ModelLivro implements Serializable {
     private String texto;
 
     @ManyToOne
-    @JoinColumn(name = "modelCategoria_id")
+    @JoinColumn(name = "id_categoria")
     private ModelCategoria modelCategoria;
 
     public ModelLivro() {

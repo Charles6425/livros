@@ -1,11 +1,19 @@
 package com.api.livros.model;
 
 
-public class ModelLivro {
+import javax.persistence.*;
+import java.io.Serializable;
+
+public class ModelLivro implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private String nome_autor;
     private String texto;
+
+    @ManyToOne
+    @JoinColumn(name = "modelCategoria_id")
     private ModelCategoria modelCategoria;
 
     public ModelLivro() {

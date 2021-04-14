@@ -1,13 +1,22 @@
 package com.api.livros.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ModelCategoria {
+@Entity(name = "categoria")
+public class ModelCategoria implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
     private String descricao;
+
+    @OneToMany(mappedBy = "modelCategoria")
     private List<ModelLivro> livros = new ArrayList<>();
 
     public ModelCategoria(){

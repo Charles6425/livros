@@ -60,10 +60,6 @@ public class ModelLivro implements Serializable {
         this.texto = texto;
     }
 
-    public ModelCategoria getModelCategoria() {
-        return modelCategoria;
-    }
-
     public void setModelCategoria(ModelCategoria modelCategoria) {
         this.modelCategoria = modelCategoria;
     }

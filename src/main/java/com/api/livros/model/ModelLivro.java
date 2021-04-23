@@ -1,6 +1,8 @@
 package com.api.livros.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity(name = "livro")
@@ -11,7 +13,7 @@ public class ModelLivro implements Serializable {
     private String titulo;
     private String nome_autor;
     private String texto;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_categoria")
     private ModelCategoria modelCategoria;
@@ -26,6 +28,10 @@ public class ModelLivro implements Serializable {
         this.nome_autor = nome_autor;
         this.texto = texto;
         this.modelCategoria = modelCategoria;
+    }
+
+    public ModelCategoria getModelCategoria() {
+        return modelCategoria;
     }
 
     public Integer getId() {

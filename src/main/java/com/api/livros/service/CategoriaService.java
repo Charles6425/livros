@@ -1,6 +1,7 @@
 package com.api.livros.service;
 
 
+import com.api.livros.exceptions.ObjectNotFoundExceptions;
 import com.api.livros.model.ModelCategoria;
 import com.api.livros.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class CategoriaService {
 
     public ModelCategoria findById(Integer id) {
         Optional<ModelCategoria> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundExceptions("Objeto não encontrado Id: " + id + ", Tipo: " + ModelCategoria.class.getName()));
     }
 
 }

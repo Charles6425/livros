@@ -30,10 +30,6 @@ public class LivroModel implements Serializable {
         this.modelCategoria = modelCategoria;
     }
 
-    public CategoriaModel getModelCategoria() {
-        return modelCategoria;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -64,6 +60,10 @@ public class LivroModel implements Serializable {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public CategoriaModel getModelCategoria() {
+        return modelCategoria;
     }
 
     public void setModelCategoria(CategoriaModel modelCategoria) {

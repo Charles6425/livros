@@ -4,10 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity(name = "categoria")
-public class ModelCategoria implements Serializable {
+public class CategoriaModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,13 +16,13 @@ public class ModelCategoria implements Serializable {
     private String descricao;
 
     @OneToMany(mappedBy = "modelCategoria")
-    private List<ModelLivro> livros = new ArrayList<>();
+    private List<LivroModel> livros = new ArrayList<>();
 
-    public ModelCategoria(){
+    public CategoriaModel(){
         super();
     }
 
-    public ModelCategoria(Integer id, String nome, String descricao) {
+    public CategoriaModel(Integer id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -53,11 +52,11 @@ public class ModelCategoria implements Serializable {
         this.descricao = descricao;
     }
 
-    public List<ModelLivro> getLivros() {
+    public List<LivroModel> getLivros() {
         return livros;
     }
 
-    public void setLivros(List<ModelLivro> livros) {
+    public void setLivros(List<LivroModel> livros) {
         this.livros = livros;
     }
 
@@ -66,7 +65,7 @@ public class ModelCategoria implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ModelCategoria that = (ModelCategoria) o;
+        CategoriaModel that = (CategoriaModel) o;
 
         return id.equals(that.id);
     }

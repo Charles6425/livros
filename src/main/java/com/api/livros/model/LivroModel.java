@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 @Entity(name = "livro")
-public class ModelLivro implements Serializable {
+public class LivroModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -16,13 +16,13 @@ public class ModelLivro implements Serializable {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    private ModelCategoria modelCategoria;
+    private CategoriaModel modelCategoria;
 
-    public ModelLivro() {
+    public LivroModel() {
         super();
     }
 
-    public ModelLivro(Integer id, String titulo, String nome_autor, String texto, ModelCategoria modelCategoria) {
+    public LivroModel(Integer id, String titulo, String nome_autor, String texto, CategoriaModel modelCategoria) {
         this.id = id;
         this.titulo = titulo;
         this.nome_autor = nome_autor;
@@ -30,7 +30,7 @@ public class ModelLivro implements Serializable {
         this.modelCategoria = modelCategoria;
     }
 
-    public ModelCategoria getModelCategoria() {
+    public CategoriaModel getModelCategoria() {
         return modelCategoria;
     }
 
@@ -66,7 +66,7 @@ public class ModelLivro implements Serializable {
         this.texto = texto;
     }
 
-    public void setModelCategoria(ModelCategoria modelCategoria) {
+    public void setModelCategoria(CategoriaModel modelCategoria) {
         this.modelCategoria = modelCategoria;
     }
 
@@ -75,7 +75,7 @@ public class ModelLivro implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ModelLivro that = (ModelLivro) o;
+        LivroModel that = (LivroModel) o;
 
         return id.equals(that.id);
     }

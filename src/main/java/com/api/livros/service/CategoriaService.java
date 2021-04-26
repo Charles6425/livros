@@ -2,7 +2,8 @@ package com.api.livros.service;
 
 
 import com.api.livros.dto.CategoriaDto;
-import com.api.livros.exceptions.ObjectNotFoundExceptions;
+import com.api.livros.service.exceptions.DataIntegrityViolationException;
+import com.api.livros.service.exceptions.ObjectNotFoundExceptions;
 import com.api.livros.model.CategoriaModel;
 import com.api.livros.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ public class CategoriaService {
         return obj.orElseThrow(() -> new ObjectNotFoundExceptions("Objeto não encontrado Id: " + id + ", Tipo: " + CategoriaModel.class.getName()));
     }
 
-    public List<CategoriaModel> findAll(){
+    public List<CategoriaModel> findAll() {
         return repository.findAll();
     }
 
-    public CategoriaModel create(CategoriaModel obj){
+    public CategoriaModel create(CategoriaModel obj) {
         obj.setId(null);
         return repository.save(obj);
     }
@@ -39,6 +40,10 @@ public class CategoriaService {
 
     public void delete(Integer id) {
         findById(id);
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("A categoria não pode ser deletada, pois possui livros associados");
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.api.livros.service;
 
 
+import com.api.livros.dto.CategoriaDto;
 import com.api.livros.exceptions.ObjectNotFoundExceptions;
 import com.api.livros.model.CategoriaModel;
 import com.api.livros.repository.CategoriaRepository;
@@ -29,4 +30,10 @@ public class CategoriaService {
         return repository.save(obj);
     }
 
+    public CategoriaModel update(Integer id, CategoriaDto objDto) {
+        CategoriaModel obj = findById(id);
+        obj.setNome(objDto.getNome());
+        obj.setDescricao(objDto.getDescricao());
+        return repository.save(obj);
+    }
 }

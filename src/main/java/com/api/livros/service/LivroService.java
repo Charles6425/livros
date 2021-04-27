@@ -1,5 +1,6 @@
 package com.api.livros.service;
 
+import com.api.livros.model.CategoriaModel;
 import com.api.livros.model.LivroModel;
 import com.api.livros.repository.LivroRepository;
 import com.api.livros.service.exceptions.ObjectNotFoundExceptions;
@@ -39,6 +40,14 @@ public class LivroService {
         newObj.setTitulo(obj.getTitulo());
         newObj.setNome_autor(obj.getNome_autor());
         newObj.setTexto(obj.getTexto());
+
+    }
+
+    public LivroModel create(Integer id_cat, LivroModel obj) {
+        obj.setId(null);
+        CategoriaModel cat = categoriaService.findById(id_cat);
+        obj.setModelCategoria(cat);
+        return repository.save(obj);
 
     }
 }

@@ -50,4 +50,9 @@ public class LivroService {
         return repository.save(obj);
 
     }
+
+    public void delete(Integer id) {
+        LivroModel obj = findById(id);
+        repository.delete(obj);
+    }
 }

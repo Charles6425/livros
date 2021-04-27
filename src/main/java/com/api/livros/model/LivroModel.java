@@ -2,16 +2,24 @@ package com.api.livros.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 @Entity(name = "livro")
 public class LivroModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotEmpty(message = "O campo TÍTULO é requerido")
+    @Length(min= 3, max = 150, message = "O campo TÍTULO deve ter entre 3 e 150 caracteres!")
     private String titulo;
+    @NotEmpty(message = "O campo NOME DO AUTOR é requerido")
+    @Length(min= 3, max = 100, message = "O campo NOME DO AUTOR deve ter entre 3 e 100 caracteres!")
     private String nome_autor;
+
     private String texto;
     @JsonIgnore
     @ManyToOne
